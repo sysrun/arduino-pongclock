@@ -98,7 +98,7 @@ void serialEvent() {
   while (Serial.available()) {
     // get the new byte:
     char inChar = (char)Serial.read(); 
-    Serial.println(inChar);
+
     // add it to the inputString:
     if (inChar != '\n') {
       uartMsgTemp += inChar;
@@ -107,7 +107,6 @@ void serialEvent() {
     // so the main loop can do something about it:
     if (inChar == '\n') {
       int timeSep = uartMsgTemp.indexOf(':');
-      Serial.println(timeSep);
       if (timeSep >= 1 && timeSep <= 3) {
         textscrolltime = uartMsgTemp.substring(0, timeSep).toInt();
         uartMsgTemp = uartMsgTemp.substring(timeSep+1, uartMsgTemp.length()+1);
