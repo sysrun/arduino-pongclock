@@ -1,4 +1,5 @@
 void normal_clock() {
+  Serial.println("clockmode:normal");
   cls();
   byte hours = time[2];
   byte mins = time[1];

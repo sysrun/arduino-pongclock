@@ -3,7 +3,7 @@
  * play pong - using the time as the score
  */
 void pong(){
-
+  Serial.println("clockmode:pong");
   float ballpos_x, ballpos_y;
   byte erase_x = 10;  //holds ball old pos so we can erase it, set to blank area of screen initially.
   byte erase_y = 10;

@@ -1,6 +1,6 @@
 //show time and date and use a random jumble of letters transition each time the time changes.
 void jumble() {
-  
+  Serial.println("clockmode:jumble");
   char days[7][4] = {"SON", "MON", "DIE", "MIT", "DON", "SAM","SON"}; //DS1307 outputs 1-7
   char allchars[37] = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"};
   char endchar[16];

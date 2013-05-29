@@ -1,5 +1,6 @@
 //print a clock using words rather than numbers
 void word_clock() {
+  Serial.println("clockmode:words");
  
   cls();
   
