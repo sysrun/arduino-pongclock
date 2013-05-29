@@ -53,8 +53,8 @@ boolean uartStringComplete = false;  // whether the string is complete
 
 
 void setup() {
-    Serial.begin(57600);
-    Serial.println("\n[pongclock]");
+  Serial.begin(57600);
+  Serial.println("\n[pongclock]");
 
   // Fetch bounds (dynamically work out how large this display is)
   X_MAX = disp.getDisplayCount() * (disp.getDisplayWidth());
