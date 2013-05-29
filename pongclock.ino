@@ -59,10 +59,6 @@ void setup() {
   // Fetch bounds (dynamically work out how large this display is)
   X_MAX = disp.getDisplayCount() * (disp.getDisplayWidth());
   Y_MAX = disp.getDisplayHeight();
-  Serial.print("XMAX:");
-  Serial.println(int(X_MAX));
-  Serial.print("YMAX:");
-  Serial.println(int(Y_MAX));
   // Prepare displays
   disp.setMaster(0,3); // INT
   disp.setSlave(1,7); // P4, DATA
