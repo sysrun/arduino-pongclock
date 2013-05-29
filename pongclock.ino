@@ -12,7 +12,7 @@
 #define DEMOTIME 30000  // 30 seconds max on each demo is enough.
 #define DISPDELAY 100    // Each "display" lasts this long
 #define LONGDELAY 1000  // This delay BETWEEN demos
-
+#define DEFAULTTEXTSCROLLTIME 50
 #define PONGSPEEDMS 20//35
 // Macro to make it the initDisplay function a little easier to understand
 #define setMaster(dispNum, CSPin) initDisplay(dispNum,CSPin,true)
@@ -46,6 +46,7 @@ int random_mode = 0;
 int mode_time_up;                        // Holds hour where clock mode will next change if in random mode
 int mode_changed = 0;                    // Flag if mode changed.
 int clock_mode = 3;                      // Default clock mode (1 = pong)
+int textscrolltime = DEFAULTTEXTSCROLLTIME;
 
 char msgLine[200] = "        #sysrun: Das ist ein Test!";
 String uartMsgTemp = "        ";         // a string to hold incoming data
@@ -105,8 +106,15 @@ void serialEvent() {
     // if the incoming character is a newline, set a flag
     // so the main loop can do something about it:
     if (inChar == '\n') {
+      int timeSep = uartMsgTemp.indexOf(':');
+      Serial.println(timeSep);
+      if (timeSep >= 1 && timeSep <= 3) {
+        textscrolltime = uartMsgTemp.substring(0, timeSep).toInt();
+        uartMsgTemp = uartMsgTemp.substring(timeSep+1, uartMsgTemp.length()+1);
+      }
+      uartMsgTemp = "        " + uartMsgTemp;
       uartMsgTemp.toCharArray(msgLine, uartMsgTemp.length()+1);
-      uartMsgTemp = "        ";
+      uartMsgTemp = "";
       uartStringComplete = true;
     } 
   }

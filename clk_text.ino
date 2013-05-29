@@ -6,7 +6,7 @@ int nSpeed = 4;
 void text_scroller() {
   Serial.println("clockmode:textscroller");
   cls();
-  for (int show = 0; show < 50 ; show++) {
+  for (int show = 0; show < textscrolltime ; show++) {
     getDate(time);
     flashSecondsLED();
 
