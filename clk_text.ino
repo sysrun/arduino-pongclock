@@ -7,13 +7,8 @@ void text_scroller() {
   Serial.println("clockmode:textscroller");
   cls();
   for (int show = 0; show < 50 ; show++) {
-    Serial.println(show);
-    //flash led for seconds on arduino
-    if ( (time[0] % 2) == 0) { 
-      buttons.ledOn(1);
-    }else{ 
-      buttons.ledOff(1);
-    }
+    getDate(time);
+    flashSecondsLED();
 
     if(checkEvents())
       return;

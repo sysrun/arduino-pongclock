@@ -1,4 +1,12 @@
 
+void flashSecondsLED() {
+  //flash led for seconds on arduino
+  if ( (time[0] % 2) == 0) { 
+    buttons.ledOn(1);
+  }else{ 
+    buttons.ledOff(1);
+  }
+}
 
 boolean checkEvents() {
   if (Serial.available()) {

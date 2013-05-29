@@ -13,12 +13,7 @@ void jumble() {
   for (int show = 0; show < SHOWCLOCK ; show++) {
     
     getDate(time);
-    //flash led for seconds on arduino
-    if ( (time[0] % 2) == 0) { 
-      buttons.ledOn(1);
-    }else{ 
-      buttons.ledOff(1);
-    }
+    flashSecondsLED();
     
     if(checkEvents())
       return;

@@ -18,12 +18,7 @@ void word_clock() {
 
     getDate(time); //get the time from the clock chip
             
-    //flash led for seconds on arduino
-    if ( (time[0] % 2) == 0) { 
-      buttons.ledOn(1);
-    }else{ 
-      buttons.ledOff(1);
-    }
+    flashSecondsLED();
     
     if(checkEvents())
       return;
