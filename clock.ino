@@ -31,7 +31,7 @@ boolean checkEvents() {
 //print menu to change the mode
 void switch_mode() {
   
-  char* modes[] = {"Numbers", "Pong", "Words", "Jumble", "Text", "Random", "Set Clk" };
+  char* modes[] = {"Numbers", "Pong", "Jumble", "Text", "Random", "Set Clk" };
   
   byte next_clock_mode;
   byte firstrun = 1;

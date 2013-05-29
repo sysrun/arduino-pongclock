@@ -20,7 +20,7 @@
 
 #define FADEDELAY 60                     // Time to fade display to black
 #define SHOWCLOCK 5000                   // How long to show clocktype for
-#define MAX_CLOCK_MODE 6                 // Number of clock modes
+#define MAX_CLOCK_MODE 4                 // Number of clock modes
 
 #define BAT1_X 2                         // Pong left bat x pos (this is where the ball collision occurs, the bat is drawn 1 behind these coords)
 #define BAT2_X 45                        // Pong right bat x pos (this is where the ball collision occurs, the bat is drawn 1 behind these coords)
@@ -45,7 +45,7 @@ uint8_t timetemp[7];
 int random_mode = 0;
 int mode_time_up;                        // Holds hour where clock mode will next change if in random mode
 int mode_changed = 0;                    // Flag if mode changed.
-int clock_mode = 3;                      // Default clock mode (1 = pong)
+int clock_mode = 2;                      // Default clock mode (1 = pong)
 int textscrolltime = DEFAULTTEXTSCROLLTIME;
 
 char msgLine[200] = "        #sysrun: Das ist ein Test!";
@@ -88,9 +88,8 @@ void loop() {
   switch(clock_mode) {
     case 0: normal_clock();break;
     case 1: pong(); break;
-    case 2: word_clock(); break;
-    case 3: jumble(); break;
-    case 4: text_scroller(); break;
+    case 2: jumble(); break;
+    case 3: text_scroller(); break;
   }
 }
 
