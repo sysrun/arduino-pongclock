@@ -20,7 +20,7 @@
 
 #define FADEDELAY 60                     // Time to fade display to black
 #define SHOWCLOCK 5000                   // How long to show clocktype for
-#define MAX_CLOCK_MODE 4                 // Number of clock modes
+#define MAX_CLOCK_MODE 5                 // Number of clock modes
 
 #define BAT1_X 2                         // Pong left bat x pos (this is where the ball collision occurs, the bat is drawn 1 behind these coords)
 #define BAT2_X 45                        // Pong right bat x pos (this is where the ball collision occurs, the bat is drawn 1 behind these coords)
@@ -71,7 +71,7 @@ void setup() {
 }
 
 void loop() {
-  if (random_mode){  
+  if (random_mode){
     getDate(time);
     //set counter to change clock type every 3 or 4 hours
     if (mode_time_up == time[2]) {
@@ -90,6 +90,7 @@ void loop() {
     case 1: pong(); break;
     case 2: jumble(); break;
     case 3: text_scroller(); break;
+    default: normal_clock();break;
   }
 }
 
