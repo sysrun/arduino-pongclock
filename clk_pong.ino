@@ -381,9 +381,9 @@ void pong(){
       restart = 1; 
     } 
     getDate(timetemp);
-    uint8_t speed = map(timetemp[0],0,59,35,5);
-    //delay(PONGSPEEDMS);
-    delay(speed);
+    //uint8_t speed = map(timetemp[0],0,59,35,5);
+    //delay(speed);
+    delay(PONGSPEEDMS);
   } 
   fade_down();
 }
