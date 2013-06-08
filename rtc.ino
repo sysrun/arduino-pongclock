@@ -1,3 +1,8 @@
+#include "config.h"
+#ifdef JEENODE 
+ PortI2C myport (2 /*, PortI2C::KHZ400 */);
+ DeviceI2C rtc (myport, 0x68);
+#endif
 static byte bin2bcd (byte val) {
     return val + 6 * (val / 10);
 }

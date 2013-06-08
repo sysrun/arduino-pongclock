@@ -19,10 +19,7 @@
 #define setMaster(dispNum, CSPin) initDisplay(dispNum,CSPin,true)
 #define setSlave(dispNum, CSPin) initDisplay(dispNum,CSPin,false)
 
-PortI2C myport (3 /*, PortI2C::KHZ400 */);
-DeviceI2C rtc (myport, 0x68);
-
-BlinkPlug buttons (2);
+BlinkPlug buttons (3);
 MilliTimer everySecond;
 
 // Init Matrix

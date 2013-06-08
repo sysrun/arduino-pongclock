@@ -11,12 +11,13 @@
 #define BAT1_X 2                         // Pong left bat x pos (this is where the ball collision occurs, the bat is drawn 1 behind these coords)
 #define BAT2_X 45                        // Pong right bat x pos (this is where the ball collision occurs, the bat is drawn 1 behind these coords)
 
+#define JEENODE
 
 #ifdef JEENODE
-  #define CLKPIN 14
-  #define DATAPIN 4
-  #define CS1PIN 3
-  #define CS2PIN 7
+  #define CLKPIN 17
+  #define DATAPIN 7
+  #define CS1PIN 4
+  #define CS2PIN 14
 #else
   #define CS1PIN 10
   #define CS2PIN 11
