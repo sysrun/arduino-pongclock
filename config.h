@@ -18,9 +18,14 @@
   #define DATAPIN 7
   #define CS1PIN 4
   #define CS2PIN 14
+  #define DCF77PIN 3
+  #define DCF_INTERRUPT 1		 // Interrupt number associated with pin
+
 #else
   #define CS1PIN 10
   #define CS2PIN 11
   #define CLKPIN 12
   #define DATAPIN 13
+  #define DCF77PIN 2
+  #define DCF_INTERRUPT 0		 // Interrupt number associated with pin
 #endif

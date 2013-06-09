@@ -14,10 +14,16 @@
 #include "DisplayToolbox.h"
 #include "Clockfont.h"
 #include "fontLarge.h"
+#include <DCF77.h>       //https://github.com/thijse/Arduino-Libraries/downloads
+#include <Time.h>        //http://www.arduino.cc/playground/Code/Time
 
 // Macro to make it the initDisplay function a little easier to understand
 #define setMaster(dispNum, CSPin) initDisplay(dispNum,CSPin,true)
 #define setSlave(dispNum, CSPin) initDisplay(dispNum,CSPin,false)
+
+time_t timeData;
+DCF77 DCF = DCF77(DCF77PIN,DCF_INTERRUPT);
+
 
 BlinkPlug buttons (3);
 MilliTimer everySecond;
@@ -54,6 +60,9 @@ void setup() {
   // Prepare displays
   disp.setMaster(0,CS1PIN); // INT
   disp.setSlave(1,CS2PIN); // P4, DATA
+
+  DCF.Start();
+
   getDate(time);
   mode_time_up = time[3];                 // Set first time to change clock mode
   //setDate(13,05,25,7,22,52,0);

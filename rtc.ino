@@ -13,6 +13,8 @@ static byte bcd2bin (byte val) {
 
 
 static void setDate (byte yy, byte mm, byte dd, byte dow, byte h, byte m, byte s) {
+  #ifdef JEENODE
+
     rtc.send();
     rtc.write(0);
     rtc.write(bin2bcd(s));
@@ -24,14 +26,44 @@ static void setDate (byte yy, byte mm, byte dd, byte dow, byte h, byte m, byte s
     rtc.write(bin2bcd(yy));
     rtc.write(0);
     rtc.stop();
+    #endif
 }
 
 static void getDate (byte* buf) {
-	rtc.send();
-	rtc.write(0);	
+  time_t DCFtime = DCF.getTime(); // Check if new DCF77 time is available
+  if (DCFtime) {
+    tmElements_t tm;   
+    breakTime(DCFtime, tm);
+  
+    Serial.println("");
+    Serial.print("Time: ");
+    Serial.print(tm.Hour);
+    Serial.print(":");
+    printDigits(tm.Minute);
+    Serial.print(":");
+    printDigits(tm.Second);
+    Serial.print(" Date: ");
+    Serial.print(tm.Day);
+    Serial.print(".");
+    Serial.print(tm.Month);
+    Serial.print(".");
+    Serial.print(tm.Year+1970);
+    Serial.print(" - ");
+    Serial.println(tm.Wday);
+    buf[0] = tm.Second;
+    buf[1] = tm.Minute;
+    buf[2] = tm.Hour;
+    buf[3] = tm.Wday;
+    buf[4] = tm.Day;
+    buf[5] = tm.Month;
+    buf[6] = (tm.Year)+1970;
+    
+  } else {
+#ifdef JEENODE
+    rtc.send();
+    rtc.write(0);	
     rtc.stop();
-
-	rtc.receive();
+    rtc.receive();
     buf[0] = bcd2bin(rtc.read(0)); // SEC
     buf[1] = bcd2bin(rtc.read(0)); // MIN
     buf[2] = bcd2bin(rtc.read(0)); // HOUR
@@ -40,4 +72,22 @@ static void getDate (byte* buf) {
     buf[5] = bcd2bin(rtc.read(0)); // MON
     buf[6] = bcd2bin(rtc.read(1)); // YEAR
     rtc.stop();
+#else
+    buf[0] = 1;
+    buf[1] = 2;
+    buf[2] = 13;
+    buf[3] = 3;
+    buf[4] = 24;
+    buf[5] = 1;
+    buf[6] = 80;
+#endif
+  }
+}
+
+void printDigits(int digits){
+  // utility function for digital clock display: prints preceding colon and leading 0
+  Serial.print(":");
+  if(digits < 10)
+    Serial.print('0');
+  Serial.print(digits);
 }
