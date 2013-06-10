@@ -50,15 +50,8 @@ static void getDate (byte* buf) {
     Serial.print(tm.Year+1970);
     Serial.print(" - ");
     Serial.println(tm.Wday);
-    buf[0] = tm.Second;
-    buf[1] = tm.Minute;
-    buf[2] = tm.Hour;
-    buf[3] = tm.Wday;
-    buf[4] = tm.Day;
-    buf[5] = tm.Month;
-    buf[6] = (tm.Year)+1970;
-    
-  } else {
+    setDate(tm.Year+1970-2000, tm.Month, tm.Day, tm.Wday, tm.Hour, tm.Minute, tm.Second); 
+  }
 #ifdef JEENODE
     rtc.send();
     rtc.write(0);	
@@ -81,7 +74,7 @@ static void getDate (byte* buf) {
     buf[5] = 1;
     buf[6] = 80;
 #endif
-  }
+
 }
 
 void printDigits(int digits){
