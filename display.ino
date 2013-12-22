@@ -30,6 +30,11 @@ void flashing_cursor(byte xpos, byte ypos, byte cursor_width, byte cursor_height
   }
 }
 
+void fadeTo(char value) {
+  value = constrain(value, 0, 14);
+  toolbox.setBrightness(value);
+}
+
 
 /*
  * fade_down

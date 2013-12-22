@@ -6,6 +6,7 @@ int nSpeed = 4;
 void text_scroller() {
   Serial.println("clockmode:textscroller");
   cls();
+  fadeTo(14);
   for (int show = 0; show < textscrolltime ; show++) {
     getDate(time);
     flashSecondsLED();
@@ -53,6 +54,8 @@ int ht1632_putLargeChar(int x, int y, char c) {
 
   // replace undisplayable characters with blank;
   if (c == 0xFFFFFFA1) {
+    charIndex = 127 - 32;
+  } else if (c == 176) {
     charIndex = 127 - 32;
   } else if (c < 32 || c > 127) {
     charIndex	=	0;
